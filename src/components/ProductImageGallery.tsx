@@ -1,4 +1,8 @@
-const ProductImageGallery = ({ imageUrls }: { imageUrls: string[] }) => {
+export interface IProductImageGallery {
+  imageUrls: string[]
+}
+
+const ProductImageGallery = ({ imageUrls }: IProductImageGallery) => {
   if (imageUrls.length === 0) return null;
 
   return (
