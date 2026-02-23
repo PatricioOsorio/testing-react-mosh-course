@@ -24,13 +24,8 @@ describe('TermsAndConditions.test', () => {
     const { getTitle, getCheckbox, getButton } = renderComponent();
 
     // Assert
-    expect(getTitle()).toBeInTheDocument();
     expect(getTitle()).toHaveTextContent(/terms/i);
-
-    expect(getCheckbox()).toBeInTheDocument();
     expect(getCheckbox()).not.toBeChecked();
-
-    expect(getButton()).toBeInTheDocument();
     expect(getButton()).toBeDisabled();
   });
 
