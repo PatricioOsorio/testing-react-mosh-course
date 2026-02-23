@@ -12,8 +12,6 @@ describe('Greet', () => {
     // Assert
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(/john/i);
-
-    screen.debug();
   });
 
   it('should render login when name is not provided', () => {

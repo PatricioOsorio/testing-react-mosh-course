@@ -1,6 +1,10 @@
-import { User } from "../entities";
+import { User } from '../entities';
 
-const UserAccount = ({ user }: { user: User }) => {
+export interface IUserAccount {
+  user: User;
+}
+
+const UserAccount = ({ user }: IUserAccount) => {
   return (
     <>
       <h2>User Profile</h2>
