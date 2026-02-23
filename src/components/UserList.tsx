@@ -1,6 +1,9 @@
 import { User } from "../entities";
 
-const UserList = ({ users }: { users: User[] }) => {
+export interface IUserList {
+  users: User[]
+}
+const UserList = ({ users }: IUserList) => {
   if (users.length === 0) return <p>No users available.</p>;
 
   return (
