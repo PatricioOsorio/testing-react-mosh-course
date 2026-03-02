@@ -21,6 +21,7 @@ describe('TagList', () => {
     // Arrange
     const { findItems } = renderComponent();
 
+    // Act
     const items = await findItems();
 
     // Assert
