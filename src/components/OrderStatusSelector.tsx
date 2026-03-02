@@ -1,10 +1,10 @@
-import { Select } from "@radix-ui/themes";
+import { Select } from '@radix-ui/themes';
 
-interface Props {
+export interface IOrderStatusSelectorProps {
   onChange: (status: string) => void;
 }
 
-const OrderStatusSelector = ({ onChange }: Props) => {
+const OrderStatusSelector = ({ onChange }: IOrderStatusSelectorProps) => {
   return (
     <Select.Root defaultValue="new" onValueChange={onChange}>
       <Select.Trigger />
