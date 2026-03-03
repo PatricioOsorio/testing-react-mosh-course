@@ -21,7 +21,8 @@ const renderComponent = (props: IOrderStatusSelectorProps) => {
     api,
     user,
 
-    getDropdown: () => screen.getByRole('combobox'),
+    getStatusCombobox: () => screen.getByRole('combobox'),
+    findOptions: async () => screen.findAllByRole('option'),
   };
 };
 
@@ -34,8 +35,8 @@ const COMPONENT_PROPS: IOrderStatusSelectorProps = {
 describe('OrderStatusSelector', () => {
   it('should render correctly the component with default value', () => {
     // Arrange
-    const { getDropdown } = renderComponent(COMPONENT_PROPS);
-    const dropdown = getDropdown();
+    const { getStatusCombobox } = renderComponent(COMPONENT_PROPS);
+    const dropdown = getStatusCombobox();
 
     // Assert
     expect(dropdown).toBeInTheDocument();
@@ -44,13 +45,13 @@ describe('OrderStatusSelector', () => {
 
   it('should call onChange when a status is selected', async () => {
     // Arrange
-    const { user, getDropdown } = renderComponent(COMPONENT_PROPS);
-    const dropdown = getDropdown();
+    const { user, getStatusCombobox, findOptions } = renderComponent(COMPONENT_PROPS);
+    const dropdown = getStatusCombobox();
 
     // Act
     await user.click(dropdown);
 
-    const options = await screen.findAllByRole('option');
+    const options = await findOptions();
     const processedOption = options.find(
       (option) => option.textContent === 'Processed'
     ) as HTMLElement;
