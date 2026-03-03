@@ -4,6 +4,7 @@ import OrderStatusSelector, {
   IOrderStatusSelectorProps,
 } from '../../src/components/OrderStatusSelector';
 import { Theme } from '@radix-ui/themes';
+import { Await } from 'react-router-dom';
 
 // ! Mocks
 const mockOnChange = vi.fn();
