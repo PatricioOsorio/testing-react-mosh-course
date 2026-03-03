@@ -36,20 +36,20 @@ describe('OrderStatusSelector', () => {
   it('should render correctly the component with default value', () => {
     // Arrange
     const { getStatusCombobox } = renderComponent(COMPONENT_PROPS);
-    const dropdown = getStatusCombobox();
+    const combobox = getStatusCombobox();
 
     // Assert
-    expect(dropdown).toBeInTheDocument();
-    expect(dropdown).toHaveTextContent(/new/i);
+    expect(combobox).toBeInTheDocument();
+    expect(combobox).toHaveTextContent(/new/i);
   });
 
   it('should call onChange when a status is selected', async () => {
     // Arrange
     const { user, getStatusCombobox, findOptions } = renderComponent(COMPONENT_PROPS);
-    const dropdown = getStatusCombobox();
+    const combobox = getStatusCombobox();
 
     // Act
-    await user.click(dropdown);
+    await user.click(combobox);
 
     const options = await findOptions();
     const processedOption = options.find(
@@ -60,6 +60,36 @@ describe('OrderStatusSelector', () => {
 
     // Assert
     expect(options).toHaveLength(3);
+    expect(mockOnChange).toHaveBeenCalled();
+  });
+
+  it.each([
+    {
+      label: /processed/i,
+      value: 'processed',
+    },
+    {
+      label: /fulfilled/i,
+      value: 'fulfilled',
+    },
+    {
+      label: /new/i,
+      value: 'new',
+    },
+  ])('should render the $value status option selected', async ({ label, value }) => {
+    // Arrange
+    const { user, getStatusCombobox } = renderComponent(COMPONENT_PROPS);
+    const combobox = getStatusCombobox();
+
+    // Act
+    await user.click(combobox);
+
+    const option = screen.getByRole('option', { name: label });
+
+    await user.click(option);
+
+    // Assert
+    expect(combobox).toHaveTextContent(new RegExp(value, 'i'));
     expect(mockOnChange).toHaveBeenCalled();
   });
 });
